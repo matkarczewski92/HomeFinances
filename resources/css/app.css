@@ -1,0 +1,127 @@
+@import url(https://fonts.googleapis.com/css?family=Mukta);
+@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+
+[x-cloak] {display: none;}
+body {
+    background-color: rgb(247, 246, 246) !important;
+    font-family:'Oswald' !important; color: rgb(46, 46, 46) !important;
+
+}
+main {
+    [x-cloak] {display: none;}
+    margin-left: 260px !important;
+    align-items:center;
+}
+
+.title { font-size: 16pt; color: rgb(46, 46, 46) !important; text-transform: uppercase; text-align: right !important;}
+.titleSm { font-size: 14pt; color: rgb(46, 46, 46) !important; text-transform: uppercase; margin-top: 5px; margin-bottom: -2px;}
+.title-center { font-size: 16pt; color: rgb(46, 46, 46) !important; text-transform: uppercase; text-align: center;}
+.text { font-size: 12pt; text-align: justify;text-justify: inter-word;}
+.pageTitle {font-size: 24pt; color: white !important;}
+
+
+hr {color: rgb(150, 197, 139) !important;}
+
+.mainBox {
+    /* Tło dla: koszty */
+    /* background-image: linear-gradient(0.15turn,#662D8C, #ED1E79); */
+    /* Tło dla: administracji */
+    /* background-image: linear-gradient(0.15turn,#4E65FF , #92EFFD); */
+    height: 300px;
+    margin-top:-100px !important;
+    justify-content: center;
+}
+.contentInfoBox {
+    margin-top:-50px !important;
+    justify-content: center;
+}
+.contentMainBox {
+    justify-content: center;
+}
+
+.container {
+    font-family: arial;
+    font-size: 24px;
+    margin: 25px;
+    width: 350px;
+    height: 200px;
+    outline: dashed 1px black;
+    /* Setup */
+    position: relative;
+  }
+
+  .child {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    /* Center vertically and horizontally */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px; /* Apply negative top and left margins to truly center the element */
+  }
+
+.inMainBox {margin-top: 100px !important; width: 85% !important;}
+.inMainBoxNav {margin-top: -40px !important; width: 85% !important;}
+.infoBoxGroup{width: 95% !important;justify-content: center; }
+.infoBox {background-color: white;margin: 15px;height: 150px;min-width: 325px;}
+.contentGroup { width: 95% !important;justify-content: center; margin-top:20px !important}
+.content {background-color: white; justify-content: center; margin-top: 20px;}
+
+
+.modalBg {background-image: linear-gradient(0.22turn,rgba(19, 18, 18, 0.2)  , rgba(240, 230, 230, 0.65)) !important;}
+
+
+.detailsTable {width: 100%; text-align: left;}
+.detailsTable thead {border-bottom: solid #969696;border-bottom-width: thin;}
+
+.strike {display: block;text-align: center ;overflow: hidden;white-space: nowrap;}
+.strike > span {position: relative;display: inline-block;}
+.strike > span:before,.strike > span:after {content: "";position: absolute;top: 50%;width: 9999px;height: 1px;background: rgb(228, 228, 228);}
+.strike > span:before {right: 100%;margin-right: 15px;}
+.strike > span:after {left: 100%;margin-left: 15px;}
+
+
+
+@media only screen and (max-width: 1050px) {
+    .infoBoxGroup{
+        display: none !important;
+    }
+    .contentGroup:first-child {
+        margin-top: 70px !important;
+
+    }
+    .boxElement {
+        margin-top: 30px !important;
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

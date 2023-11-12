@@ -1,0 +1,28 @@
+nav {
+    /* background-image: linear-gradient(0.15turn,#11998E  , #38EF7D); */
+    background-color: white;
+    margin-bottom: 20px;
+    /* --bs-bg-opacity: 0.8; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: fixed;
+    top: 0px;
+    width:100%;
+    z-index:100;
+  }
+
+a {
+    color: rgb(46, 46, 46) !important;
+}
+/* .nav-link {
+    color: black !important;
+} */
+.nav-link:hover{
+    background-color:#c0c0c07e !important;
+}
+.nav-link.active{
+    background-color:#858685c4 !important;
+
+}
+
+
+
