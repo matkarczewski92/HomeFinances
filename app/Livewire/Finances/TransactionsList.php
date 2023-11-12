@@ -42,9 +42,16 @@ class TransactionsList extends Component
         $dateTo = (empty($this->filterDateTo)) ? '2999-01-01' : $this->filterDateTo;
         $category = (!empty($this->filterCategory)) ? ['category', $this->filterCategory] : ['category', '!=', ''];
         $group = (!empty($this->group)) ? ['group', $this->group] : ['group', '!=', ''];
+        $saving = ($this->group == 2) ? ['group', '4'] : ['group', $this->group];
+        $savingCat = ($this->group == 2) ? ['category', null] : ['category', '!=', ''];
         $datas = Finances::where('type', $this->type)
         ->orderBy($order_row, $order)
-        ->where([$category, $group])
+        ->where(function ($query) use ($category, $savingCat) {
+            $query->where([$category])->orWhere([$savingCat]);
+        })
+        ->where(function ($query) use ($group, $saving) {
+            $query->where([$group])->orWhere([$saving]);
+        })
         ->whereBetween('created_at', [$dateFrom, $dateTo])
         ->paginate(25);
 

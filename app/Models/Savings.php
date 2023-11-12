@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Savings extends Model
 {
     use HasFactory;
+
+    public function getSum()
+    {
+        return $this->hasMany(Finances::class, 'saving', 'id');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Savings;
 use Illuminate\Http\Request;
 
 class SavingssController extends Controller
@@ -11,7 +12,9 @@ class SavingssController extends Controller
      */
     public function index()
     {
-        return view('savings');
+        return view('savings', [
+            'toColect' => Savings::where('colected', null)->get(),
+        ]);
     }
 
     /**
@@ -19,6 +22,7 @@ class SavingssController extends Controller
      */
     public function create()
     {
+        return view('forms.create-saving');
     }
 
     /**
@@ -26,6 +30,14 @@ class SavingssController extends Controller
      */
     public function store(Request $request)
     {
+        $saving = new Savings();
+        $saving->title = $request->title;
+        $saving->value = $request->value;
+        $saving->exp_date = $request->exp_date;
+        $saving->save();
+
+        return redirect()
+            ->route('savings.index');
     }
 
     /**

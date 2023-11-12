@@ -31,6 +31,9 @@ class CreateForm extends Component
         if (!empty($this->edit)) {
             $this->edit();
         }
+        if (isset($_GET['saving'])) {
+            $this->savingFillForm();
+        }
 
         return view('livewire.finances.create-form', [
             'categories' => $this->type(),
@@ -82,5 +85,14 @@ class CreateForm extends Component
     public function savings()
     {
         $this->formShow = 1;
+    }
+
+    public function savingFillForm()
+    {
+        $saving = Savings::find($_GET['saving']);
+        $this->formGroup = 4;
+        $this->formType = 'c';
+        $this->formSavingsShow = 1;
+        $this->formSavings = $_GET['saving'];
     }
 }

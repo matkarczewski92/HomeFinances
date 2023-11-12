@@ -30,7 +30,7 @@
         </li>
         <hr>
         <li>
-          <a href="{{ route('savings') }}" class="nav-link {{ (request()->segment(1) == 'savings') ? 'active' : '' }}">
+          <a href="{{ route('savings.index') }}" class="nav-link {{ (request()->segment(1) == 'savings') ? 'active' : '' }}">
             <i class="bi bi-piggy-bank"></i><span class="ms-2">Oszczędności</span>
           </a>
         </li>

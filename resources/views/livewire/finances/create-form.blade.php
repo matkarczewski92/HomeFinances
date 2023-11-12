@@ -16,7 +16,7 @@
             <span>Informacje ogólne</span>
         </div>
 
-            @include('livewire.components.select', ['data' => $groups,'name' => 'group', 'change' => 'group', 'model' => 'formGroup', 'title' => 'Grupa '])
+            @include('livewire.components.select', ['data' => $groups,'dbtitle' => 'name','name' => 'group', 'change' => 'group', 'model' => 'formGroup', 'title' => 'Grupa '])
 
         @if (!empty($formGroup) or !empty($edit))
             <div class="mb-3">
@@ -30,11 +30,11 @@
 
 
             @if (!empty($formType) AND $this->formGroup != 4)
-                @include('livewire.components.select', ['data' => $categories,'name' => 'category', 'change' => 'category', 'model' => 'formCategory', 'title' => 'Kategoria '])
+                @include('livewire.components.select', ['data' => $categories,'dbtitle' => 'name','name' => 'category', 'change' => 'category', 'model' => 'formCategory', 'title' => 'Kategoria '])
             @endif
 
             @if (!empty($formSavingsShow) AND !empty($formType))
-                @include('livewire.components.select', ['data' => $savings,'name' => 'saving', 'change' => 'saving', 'model' => 'formSavings', 'title' => 'Oszczędności '])
+                @include('livewire.components.select', ['data' => $savings,'dbtitle' => 'title', 'name' => 'saving', 'change' => 'savings', 'model' => 'formSavings', 'title' => 'Oszczędności '])
             @endif
 
             @if (!empty($formType) AND !empty($formGroup) AND (!empty($formSavings) OR !empty($formCategory)))

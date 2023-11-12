@@ -14,8 +14,8 @@ main {
     align-items:center;
 }
 
-.title { font-size: 16pt; color: rgb(46, 46, 46) !important; text-transform: uppercase; text-align: right !important;}
-.titleSm { font-size: 14pt; color: rgb(46, 46, 46) !important; text-transform: uppercase; margin-top: 5px; margin-bottom: -2px;}
+.title { font-size: 16pt; color: rgb(46, 46, 46) !important; text-transform: uppercase;}
+.titleSm { font-size: 14pt; color: rgb(46, 46, 46) !important; text-transform: uppercase; margin-top: 5px; margin-bottom: -2px;text-align: left !important;}
 .title-center { font-size: 16pt; color: rgb(46, 46, 46) !important; text-transform: uppercase; text-align: center;}
 .text { font-size: 12pt; text-align: justify;text-justify: inter-word;}
 .pageTitle {font-size: 24pt; color: white !important;}

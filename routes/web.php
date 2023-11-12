@@ -35,8 +35,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/costs', [App\Http\Controllers\CostsController::class, 'index'])->name('costs');
     Route::get('/fixedcosts', [App\Http\Controllers\FixedCostsController::class, 'index'])->name('fixedcosts');
     Route::get('/oneoffcosts', [App\Http\Controllers\OneOffCostsControllerr::class, 'index'])->name('oneoffcosts');
-    Route::get('/savings', [App\Http\Controllers\SavingssController::class, 'index'])->name('savings');
+
     Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
 
+    Route::resource('savings', App\Http\Controllers\SavingssController::class);
     Route::resource('transactions', TransactionsController::class);
 });

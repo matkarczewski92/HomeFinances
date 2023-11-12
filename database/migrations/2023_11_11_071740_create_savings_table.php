@@ -14,6 +14,7 @@ return new class() extends Migration {
             $table->id();
             $table->string('title');
             $table->double('value', 8, 2);
+            $table->date('exp_date')->nullable();
             $table->smallInteger('colected')->nullable();
             $table->timestamps();
         });
