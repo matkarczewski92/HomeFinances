@@ -20,6 +20,7 @@ return new class() extends Migration {
             $table->string('title');
             $table->text('annotations')->nullable();
             $table->integer('payment_day')->nullable();
+            $table->date('exp_date')->nullable();
             $table->timestamps();
         });
     }

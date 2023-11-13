@@ -4,7 +4,7 @@
 
   @include('components.top', ['bg' => 'background-image: linear-gradient(0.15turn,#11998E, #38EF7D);', 'title' => 'Manager finansów',
   'additionalButtons' => '','additionalInfo' => '',])
-  @include('components.info-shot')
+  @livewire('finances.info-shot')
 
 
   <div class="row contentMainBox ">

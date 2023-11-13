@@ -5,7 +5,8 @@
 
     @include('components.top', ['bg' => 'background-image: linear-gradient(0.15turn,#009245 , #FCEE21);', 'title' => 'Dochody',
     'additionalButtons' => '','additionalInfo' => '',])
-    @include('components.info-shot')
+
+    @livewire('finances.info-shot')
 
 
   <div class="row contentMainBox ">

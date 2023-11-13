@@ -48,15 +48,16 @@
           <hr>
           <div class="dropdown text-center">
             <a href="#" class=" align-items-center text-decoration-none " id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://avatars.githubusercontent.com/u/65907188?v=4" alt="" width="136" height="136" class="rounded-circle me-2"> <br>
-              <strong> {{ Auth::user()?->name }} </strong><br/>
-              <small>Administrator</small>
+              <img src="{{ Auth::user()?->avatar }}" alt="" width="136" height="136" class="rounded-circle me-2"> <br>
+              <strong> {{ ucfirst(Auth::user()?->name) }} </strong><br/>
+              @can('admin-level')<small>Administrator</small>@endcan
             </a>
 
             <ul class="dropdown-menu dropdown-menu-light text-small shadow" aria-labelledby="dropdownUser1">
               <li>
                 <a class="dropdown-item" href="#">Profile</a>
               </li>
+              @can('admin-level')
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -66,6 +67,7 @@
               <li>
                 <a class="dropdown-item" href="#">Użytkownicy</a>
               </li>
+              @endcan
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -77,6 +79,7 @@
                </a>
               </li>
             </ul>
+
           </div>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
               @csrf

@@ -9,8 +9,7 @@
         'additionalButtons' => '',
         'additionalInfo' => '',
         ])
-    @include('components.info-shot')
-
+    @livewire('finances.info-shot')
 
   <div class="row contentMainBox ">
 

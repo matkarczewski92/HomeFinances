@@ -9,16 +9,33 @@
         'additionalButtons' => '',
         'additionalInfo' => '',
         ])
-    @include('components.info-shot')
+    @livewire('finances.info-shot')
 
 
-  <div class="row contentMainBox ">
-
-
-    @foreach ($toColect ?? [] as $col)
-        @include('livewire.savings.saving-box', ['data' => $col])
-    @endforeach
-
-  </div>
+<div class="row contentMainBox ">
+    @if ($toColect->count() != 0)
+        <div class="strike mb-2 mt-3">
+            <span>Aktualne</span>
+        </div>
+        @foreach ($toColect ?? [] as $col)
+            @include('livewire.savings.saving-box', ['data' => $col])
+        @endforeach
+    @else
+        <div class="w-50 mt-4 ">
+            <div class="alert alert-danger text-center" role="alert">
+                <p class="mb-3">Brak aktywnego celu oszczędzania.</p>
+                <a type="button" href="{{ route('savings.create') }}" class="btn btn-light mb-2">Dodaj cel oszczędności</a>
+            </div>
+        </div>
+    @endif
+    @if ($colected->count() != 0)
+        <div class="strike mb-2 mt-5">
+            <span>Zakończone</span>
+        </div>
+        @foreach ($colected ?? [] as $end)
+            @include('livewire.savings.saving-box', ['data' => $end])
+        @endforeach
+    @endif
+</div>
 
 @endsection

@@ -14,6 +14,7 @@ class SavingssController extends Controller
     {
         return view('savings', [
             'toColect' => Savings::where('colected', null)->get(),
+            'colected' => Savings::where('colected', '<>', null)->get(),
         ]);
     }
 
@@ -52,6 +53,12 @@ class SavingssController extends Controller
      */
     public function edit(string $id)
     {
+        $saving = Savings::find($id);
+        $saving->colected = null;
+        $saving->save();
+
+        return redirect()
+        ->route('savings.index');
     }
 
     /**
@@ -59,6 +66,14 @@ class SavingssController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $saving = Savings::find($id);
+        $saving->title = $request->title;
+        $saving->value = $request->value;
+        $saving->exp_date = $request->exp_date;
+        $saving->save();
+
+        return redirect()
+        ->route('savings.index');
     }
 
     /**
@@ -66,5 +81,15 @@ class SavingssController extends Controller
      */
     public function destroy(string $id)
     {
+        $saving = Savings::find($id);
+        if (is_null($saving->colected)) {
+            $saving->colected = 1;
+            $saving->save();
+        } else {
+            $saving->delete();
+        }
+
+        return redirect()
+        ->route('savings.index');
     }
 }

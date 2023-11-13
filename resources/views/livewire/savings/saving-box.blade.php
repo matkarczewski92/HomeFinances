@@ -25,8 +25,16 @@
         <div class="col text-end">Limit czasowy: {{$data->exp_date ?? 'brak'}}</div>
     </div>
     <div class="row mt-3 mb-3 text-center">
-        <div class="col"><a type="button"  class="btn btn-outline-primary w-100">Edytuj</a></div>
+        <div class="col"><a type="button" href="{{ route('savings.create', ['saving' => $data->id]) }}" class="btn btn-outline-primary w-100">Edytuj</a></div>
         <div class="col"><a type="button" href="{{ route('transactions.create', ['saving' => $data->id]) }}" class="btn btn-outline-success w-100">Wpłać</a></div>
-        <div class="col"><a type="button"  class="btn btn-outline-danger w-100">Zakończ</a></div>
+        <div class="col">
+            <form action="{{ route('savings.destroy', $data->id) }}" method="POST" >
+                @method('delete') @csrf
+                <button class="btn btn-outline-danger w-100" type="submit">@if ($data->colected != null) Usuń @else Zakończ @endif</button>
+            </form>
+        </div>
+        @if ($data->colected != null)
+            <div class="col"><a type="button" href="{{ route('savings.edit', ['saving' => $data->id]) }}" class="btn btn-outline-warning w-100">Przywróć</a></div>
+        @endif
     </div>
   </div>

@@ -5,7 +5,7 @@
 
   @include('components.top', ['bg' => 'background-image: linear-gradient(0.15turn,#662D8C, #ED1E79);', 'title' => 'Podsumowanie kosztów',
   'additionalButtons' => '','additionalInfo' => '',])
-  @include('components.info-shot')
+  @livewire('finances.info-shot')
 
 
   <div class="row contentMainBox ">

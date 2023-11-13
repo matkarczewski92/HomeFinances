@@ -5,7 +5,7 @@
     @include('components.top', ['bg' => 'background-image: linear-gradient(0.15turn,#464545, #F0F3B0);', 'title' => 'Transakcje cykliczne',
     'additionalButtons' => '','additionalInfo' => '',])
 
-    @include('components.info-shot')
+@livewire('finances.info-shot')
 
 
     <div class="row contentMainBox ">

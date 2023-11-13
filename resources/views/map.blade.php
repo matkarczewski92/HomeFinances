@@ -5,7 +5,7 @@
 
     @include('components.top', ['bg' => 'background-image: linear-gradient(0.15turn,#2E3192, #1BFFFF);', 'title' => 'Mapa przepływów',
     'additionalButtons' => '','additionalInfo' => '',])
-    @include('components.info-shot')
+    @livewire('finances.info-shot')
 
 
   <div class="row contentMainBox ">

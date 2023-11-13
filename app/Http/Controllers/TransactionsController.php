@@ -34,6 +34,7 @@ class TransactionsController extends Controller
         $fn->title = $request->title;
         $fn->value = $request->value;
         $fn->created_at = $request->created_at;
+        $fn->exp_date = $request->exp_date;
         $fn->payment_day = $request->payment_day;
         $fn->annotations = $request->annotations;
         $fn->saving = $request->saving;
@@ -87,7 +88,10 @@ class TransactionsController extends Controller
         $transaction->title = $request->title;
         $transaction->annotations = $request->annotations;
         $transaction->payment_day = $request->payment_day;
-        $transaction->created_at = $request->created_at;
+        $transaction->exp_date = $request->exp_date;
+        $in = date_create($request->created_at);
+        $out = date_create($in->format('Y-m-01'));
+        $transaction->created_at = ($request->group == 1 or $request->group == 3) ? $out : $request->created_at;
         $transaction->save();
         // dd($request);
 

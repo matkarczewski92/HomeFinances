@@ -17,5 +17,10 @@ class UserSeeder extends Seeder
             'email' => 'matkarczewski92@gmail.com',
             'password' => '$2y$12$gLa5QVHnxmKUNt2QXZFIl./qX5CzQUWWZpcBWgwhXy3aMmypioTou',
         ]);
+        DB::table('users')->insert([
+            'name' => 'magda',
+            'email' => 'magdakarczewska7@gmail.com',
+            'password' => '$2y$12$gLa5QVHnxmKUNt2QXZFIl./qX5CzQUWWZpcBWgwhXy3aMmypioTou',
+        ]);
     }
 }

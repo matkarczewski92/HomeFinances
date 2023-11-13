@@ -18,6 +18,7 @@ class CreateForm extends Component
     public $formSavingsShow;
     public $formShow;
     public $date;
+    public $dateTo;
     public $edit;
     public $editId;
     public $title;
@@ -54,6 +55,7 @@ class CreateForm extends Component
         }
         $this->title = $tr->title;
         $this->date = $tr->created_at->format('Y-m-d');
+        $this->dateTo = $tr->exp_date;
         $this->annotations = $tr->annotations;
         $this->value = $tr->value;
         $this->payment_day = $tr->payment_day;

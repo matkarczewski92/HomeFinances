@@ -8,8 +8,8 @@
                 <td>Kategoria</td>
                 @if($group != 1 && $group != 3) <td>Data</td>@endif
                 @if($group == 1 || $group == 3) <td>Dzień płatności</td>@endif
-                <td style="width:4%; text-align: right"></td>
-                <td style="width:4%; text-align: right"></td>
+                <td style="width:2%; text-align: right"></td>
+                <td style="width:2%; text-align: right"></td>
             </thead>
             @foreach ($datas ?? [] as $d)
                 <tr>
