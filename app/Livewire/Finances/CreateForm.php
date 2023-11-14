@@ -28,7 +28,7 @@ class CreateForm extends Component
 
     public function render()
     {
-        $this->date = Carbon::now()->format('Y-m-d');
+        $this->date = Carbon::now()->format('Y-m-01');
         if (!empty($this->edit)) {
             $this->edit();
         }

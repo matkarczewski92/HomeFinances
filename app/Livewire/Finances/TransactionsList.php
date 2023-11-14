@@ -37,7 +37,7 @@ class TransactionsList extends Component
             $order_row = 'created_at';
             $order = 'desc';
         }
-
+        $lastDayOfMonth = date('Y-m-t');
         $dateFrom = (empty($this->filterDateFrom)) ? '0000-01-01' : $this->filterDateFrom;
         $dateTo = (empty($this->filterDateTo)) ? '2999-01-01' : $this->filterDateTo;
         $category = (!empty($this->filterCategory)) ? ['category', $this->filterCategory] : ['category', '!=', ''];
@@ -46,6 +46,10 @@ class TransactionsList extends Component
         $savingCat = ($this->group == 2) ? ['category', null] : ['category', '!=', ''];
         $datas = Finances::where('type', $this->type)
         ->orderBy($order_row, $order)
+        ->where(function ($query) use ($lastDayOfMonth) {
+            $query->where('exp_date', null)
+            ->orWhere('exp_date', '>=', $lastDayOfMonth);
+        })
         ->where(function ($query) use ($category, $savingCat) {
             $query->where([$category])->orWhere([$savingCat]);
         })

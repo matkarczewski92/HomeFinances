@@ -64,7 +64,7 @@
                         </div>
                         @else
                     <div class="col-md-4">
-                        @include('livewire.components.input', ['title' => 'Data transakcji', 'type' => 'date', 'name' => 'created_at', 'model' => 'date',])
+                        @include('livewire.components.input', ['title' => 'Data transakcji', 'type' => 'date', 'name' => 'created_at', 'model' => 'expDate'])
                     </div>
                     @endif
                 </div>

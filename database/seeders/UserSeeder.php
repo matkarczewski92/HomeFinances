@@ -16,6 +16,8 @@ class UserSeeder extends Seeder
             'name' => 'mateusz',
             'email' => 'matkarczewski92@gmail.com',
             'password' => '$2y$12$gLa5QVHnxmKUNt2QXZFIl./qX5CzQUWWZpcBWgwhXy3aMmypioTou',
+            'admin' => 1,
+            'avatar' => 'https://avatars.githubusercontent.com/u/65907188?v=4',
         ]);
         DB::table('users')->insert([
             'name' => 'magda',

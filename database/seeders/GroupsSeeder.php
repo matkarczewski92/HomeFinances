@@ -14,7 +14,7 @@ class GroupsSeeder extends Seeder
     {
         $groups = [
             [
-                'name' => 'Stałe',
+                'name' => 'Cykliczne',
             ],
             [
                 'name' => 'Jednorazowe',

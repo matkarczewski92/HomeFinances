@@ -8,15 +8,10 @@
     @livewire('finances.info-shot')
 
 
-<div class="row contentMainBox ">
-    <div class="row contentGroup ">
-        <div class="col-xl content rounded-2 shadow me-3">
-
-            @livewire('budget.sheet')
-
-
-        </div>
+    <div class="row contentMainBox ">
+        @livewire('budget.sheet')
     </div>
-</div>
+
+
 
 @endsection
