@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Finances;
 
+use App\Models\AccBalance;
+use App\Models\BudgetPlan;
 use App\Models\Finances;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -19,14 +21,14 @@ class InfoShot extends Component
 
     public function render()
     {
-        $this->incomeActual = number_format($this->getSum('i')[0], 2, '.', ',');
-        $this->incomePeriod = number_format($this->getSum('i')[1], 2, '.', ',');
+        $this->incomeActual = number_format($this->getSum('i')[0] + $this->lastAccBalance(), 2, '.', ',');
+        $this->incomePeriod = number_format($this->getSum('i')[2], 2, '.', ',');
         $this->costActual = number_format($this->getSum('c')[0], 2, '.', ',');
-        $this->costPeriod = number_format($this->getSum('c')[1], 2, '.', ',');
+        $this->costPeriod = number_format($this->getSum('c')[2], 2, '.', ',');
         $this->loanActual = number_format($this->getSum('l')[0], 2, '.', ',');
         $this->loanPeriod = number_format($this->getSum('l')[1], 2, '.', ',');
-        $this->budgetActual = number_format($this->getSum('i')[0] - $this->getSum('c')[0] - $this->getSum('l')[0], 2, '.', ',');
-        $this->budgetPeriod = number_format($this->getSum('i')[1] - $this->getSum('c')[1] - $this->getSum('l')[1], 2, '.', ',');
+        $this->budgetActual = number_format($this->getSum('i')[0] - $this->getSum('c')[0] - $this->getSum('l')[0] + $this->lastAccBalance(), 2, '.', ',');
+        $this->budgetPeriod = number_format($this->getSum('i')[2] - $this->getSum('c')[2] - $this->getSum('l')[1] + $this->lastAccBalance(), 2, '.', ',');
 
         return view('livewire.finances.info-shot');
     }
@@ -37,10 +39,10 @@ class InfoShot extends Component
         $monthNumber = (empty($month)) ? date('m') : $month;
         $month = str_pad($monthNumber, 2, '0', STR_PAD_LEFT);
         $actualDay = date('d');
-        $lastDay = date('t');
+        $lastDay = cal_days_in_month(CAL_GREGORIAN, $month, 2023);
         $actualDate = Carbon::now()->format('Y-'.$month.'-d');
         $firstDayThisMonth = date('Y-'.$month.'-01');
-        $lastDayThisMonth = date('Y-'.$month.'-t');
+        $lastDayThisMonth = date('Y-'.$month.'-'.$lastDay);
 
         $actual = Finances::where('type', $transactionType)
             ->where(function ($qr) use ($firstDayThisMonth, $actualDate, $actualDay, $type) {
@@ -105,9 +107,36 @@ class InfoShot extends Component
                     });
                 });
             }
-        })
-            ->sum('value');
+        })->sum('value');
 
-        return [$actual, $period];
+        $plan = $this->planning($transactionType, $month);
+
+        return [$actual, $period, $period + $plan];
+    }
+
+    public function planning($transactionType, $month)
+    {
+        $lastDay = cal_days_in_month(CAL_GREGORIAN, $month, 2023);
+        $actualDate = Carbon::now()->format('Y-'.$month.'-d');
+        $firstDayThisMonth = date('Y-'.$month.'-01');
+        $lastDayThisMonth = date('Y-'.$month.'-'.$lastDay);
+
+        $plan = BudgetPlan::where('type', $transactionType)->where('created_at', '<=', $lastDayThisMonth)->where('exp_date', '>', $firstDayThisMonth)->sum('value');
+        $period = Finances::where('type', $transactionType)
+        ->where('group', 2)
+        ->whereBetween('created_at', [$firstDayThisMonth, $lastDayThisMonth])
+        ->sum('value');
+
+        return $plan - $period;
+    }
+
+    public function lastAccBalance($currentMonth = null, $currentYear = null)
+    {
+        $currentMonth = (is_null($currentMonth)) ? Carbon::now()->subMonth()->month : $currentMonth;
+        $currentYear = (is_null($currentYear)) ? Carbon::now()->year : $currentYear;
+        $return = AccBalance::whereMonth('created_at', $currentMonth)->whereYear('created_at', $currentYear)->sum('value');
+        // dd($currentYear);
+
+        return $return;
     }
 }

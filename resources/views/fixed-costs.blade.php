@@ -9,10 +9,10 @@
 
 
     <div class="row contentMainBox ">
-        @livewire('finances.transactions-list', ['data' => '', 'type' => 'c', 'group' => 1, 'title' => 'Koszty'])
+        @livewire('finances.transactions-list', ['data' => '', 'type' => 'c', 'group' => 1, 'title' => 'Koszty', 'filters'=> 'no'])
       </div>
       <div class="row contentMainBox ">
-        @livewire('finances.transactions-list', ['data' => '', 'type' => 'i', 'group' => 1, 'title' => 'Dochody'])
+        @livewire('finances.transactions-list', ['data' => '', 'type' => 'i', 'group' => 1, 'title' => 'Dochody', 'filters'=> 'no'])
       </div>
 
 @endsection

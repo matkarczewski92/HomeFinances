@@ -17,7 +17,7 @@ class CreateForm extends Component
     public $formSavings;
     public $formSavingsShow;
     public $formShow;
-    public $date;
+    public $dateFrom;
     public $dateTo;
     public $edit;
     public $editId;
@@ -28,7 +28,7 @@ class CreateForm extends Component
 
     public function render()
     {
-        $this->date = Carbon::now()->format('Y-m-01');
+        $this->dateFrom = Carbon::now()->format('Y-m-01');
         if (!empty($this->edit)) {
             $this->edit();
         }
@@ -54,7 +54,9 @@ class CreateForm extends Component
             $this->formSavingsShow = 1;
         }
         $this->title = $tr->title;
-        $this->date = $tr->created_at->format('Y-m-d');
+
+        $this->dateFrom = $tr->created_at->format('Y-m-d');
+
         $this->dateTo = $tr->exp_date;
         $this->annotations = $tr->annotations;
         $this->value = $tr->value;

@@ -19,6 +19,7 @@ class TransactionsList extends Component
     public $filterDateFrom;
     public $filterDateTo;
     public $filterCategory;
+    public $filters;
 
     public function render()
     {

@@ -23,6 +23,13 @@
                     <td class="text-center @if ($month == $current) borderCurrentTop @endif">{{$month}}</td>
                 @endforeach
             </tr>
+            <tr>
+                <td>Stan kont poprzedni msc</td>
+
+                @foreach ($months ?? [] as $month)
+                <td class="text-center @if ($month == $current) borderCurrentContent @endif">{{number_format($dataBalance[$month], 2, '.', ',')}}</td>
+                @endforeach
+            </tr>
             @foreach ($incomeCategory as $iC)
             <tr>
                 <td >{{$iC->name}}</td>
@@ -70,13 +77,6 @@
                     $inc += ($sumIncome[$month]-$sumCost[$month]);
                     $incArray[] = $inc
                 @endphp
-                @endforeach
-            </tr>
-            <tr>
-                <td style="width: 15%"><p class=" mt-1 mb-1" style="text-align: center !important">Narastająco</p></td>
-                @if (!empty($compareDate))<td></td>@endif
-                @foreach ($incArray as $iA)
-                <td class="text-center @if ($iA<0) bg-danger @else bg-success @endif">{{number_format($iA, 2, '.', ',')}}</td>
                 @endforeach
             </tr>
         </table>

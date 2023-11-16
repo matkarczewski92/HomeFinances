@@ -22,7 +22,7 @@
         @endforeach
     @else
         <div class="w-50 mt-4 ">
-            <div class="alert alert-danger text-center" role="alert">
+            <div class="alert alert-danger text-center mt-5" role="alert">
                 <p class="mb-3">Brak aktywnego celu oszczędzania.</p>
                 <a type="button" href="{{ route('savings.create') }}" class="btn btn-light mb-2">Dodaj cel oszczędności</a>
             </div>

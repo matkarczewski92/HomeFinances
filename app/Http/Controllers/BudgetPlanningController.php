@@ -41,6 +41,7 @@ class BudgetPlanningController extends Controller
         $in = date_create($request->exp_date);
         $out = date_create($in->format('Y-m-t'));
         $fn->exp_date = $out;
+        $fn->title = $request->title;
         $fn->category = $request->category;
         $fn->type = $request->type;
         $fn->value = $request->value;
@@ -76,10 +77,12 @@ class BudgetPlanningController extends Controller
         $in = date_create($request->created_at);
         $out = date_create($in->format('Y-m-01'));
         $fn->created_at = $out;
+
         $in = date_create($request->exp_date);
         $out = date_create($in->format('Y-m-t'));
         $fn->exp_date = $out;
         $fn->category = $request->category;
+        $fn->title = $request->title;
         $fn->type = $request->type;
         $fn->value = $request->value;
         $fn->save();

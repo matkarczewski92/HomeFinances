@@ -1,5 +1,5 @@
 <div class="row contentGroup ">
-    <div class="col-xl-8 content rounded-2 shadow me-3">
+    <div class="@if ($filters != 'no') col-xl-8 @else col-xl-12 @endif content rounded-2 shadow me-3">
       <span class="title">{{ $title }}</span>
         <table class="detailsTable mb-3" >
             <thead>
@@ -12,8 +12,24 @@
                 <td style="width:2%; text-align: right"></td>
             </thead>
             @foreach ($datas ?? [] as $d)
-                <tr>
-                    <td>{{ $d->title }}</td>
+            @php
+                $now = date("Y-m-d")
+            @endphp
+            @if ($d->created_at>$now AND $d->group != 2)
+                @php
+                    $style = "color: gray !important; font-style: italic; !important";
+                @endphp
+            @else
+                @php
+                    $style = "";
+                @endphp
+            @endif
+                <tr style="{{$style}}">
+                    <td>{{ $d->title }}
+                        @if ($d->created_at>$now AND $d->group != 2)
+                            <small class="text-danger">(Obowiązuje od: {{$d->created_at->format("Y-m-d")}})</small>
+                        @endif
+                    </td>
                     <td>{{ number_format($d->value, 2,',','.') }} zł</td>
                     <td>{{ $d->categoryDetails?->name }}</td>
                     @if($group != 1 && $group != 3) <td>{{ $d->created_at->format("Y-m-d") }}</td>@endif
@@ -34,7 +50,7 @@
             {{$datas->links()}}
         </div>
     </div>
-
+    @if ($filters != 'no')
     <div class="col-xl-3 content rounded-2 shadow">
         <span class="title">Filtry</span>
         <div class="mb-3">
@@ -56,5 +72,5 @@
         </div>
 
     </div>
-
+    @endif
 </div>

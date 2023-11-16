@@ -10,6 +10,7 @@
             <div class="col-lg-6 text-end mt-5 ">
                 {!! $additionalButtons ?? '' !!}
                 {{-- @livewire('modals.category') --}}
+                <a type="button" href="{{ route('accbalance.create') }}" class="btn btn-light me-3">Dodaj stan konta</a>
                 <a type="button" href="{{ route('planning.create') }}" class="btn btn-light me-3">Dodaj plan budżetowy</a>
                 <a type="button" href="{{ route('savings.create') }}" class="btn btn-light me-3">Dodaj cel oszczędności</a>
                 <a type="button" href="{{ route('transactions.create') }}" class="btn btn-light me-3">Dodaj transakcje</a>

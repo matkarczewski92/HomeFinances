@@ -49,22 +49,24 @@
 
                 <div class="row g-3 mb-3">
                     <div class="col-md-4">
-                        @include('livewire.components.input', ['title' => 'Kwota', 'type' => 'number', 'name' => 'value', 'model' => 'value', 'min' => '0.01', 'step' => '0.01', 'required' => 'required'])
+                        @include('livewire.components.input', ['title' => 'Kwota', 'type' => 'number', 'name' => 'value', 'model' => 'value',  'step' => '0.01', 'required' => 'required'])
                     </div>
 
                     @if ($this->formGroup == 1 OR $this->formGroup == 3)
                         <div class="col-md-2">
-                            @include('livewire.components.input', ['title' => 'Obowiązuje od', 'type' => 'date', 'name' => 'created_at', 'model' => 'date',])
+
+                            @include('livewire.components.input', ['title' => 'Obowiązuje od', 'type' => 'date', 'name' => 'created_at', 'model' => 'dateFrom'])
                         </div>
                         <div class="col-md-2">
-                            @include('livewire.components.input', ['title' => 'Obowiązuje do', 'type' => 'date', 'name' => 'exp_date', 'model' => 'dateTo',])
+                            @include('livewire.components.input', ['title' => 'Obowiązuje do', 'type' => 'date', 'name' => 'exp_date', 'model' => 'dateTo'])
                         </div>
                         <div class="col-md-4">
                             @include('livewire.components.input', ['title' => 'Dzień płatności (cykliczny)', 'type' => 'number', 'name' => 'payment_day', 'model' => 'payment_day', 'min' => '1', 'max' => '31', 'required' => 'required'])
                         </div>
                         @else
                     <div class="col-md-4">
-                        @include('livewire.components.input', ['title' => 'Data transakcji', 'type' => 'date', 'name' => 'created_at', 'model' => 'expDate'])
+
+                        @include('livewire.components.input', ['title' => 'Data transakcji', 'type' => 'date', 'name' => 'created_at', 'model' => 'dateFrom'])
                     </div>
                     @endif
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Budget;
 
+use App\Models\AccBalance;
 use App\Models\BudgetPlan;
 use App\Models\Category;
 use App\Models\Finances;
@@ -30,6 +31,7 @@ class Sheet extends Component
             'costCategory' => Category::where('type', 'c')->get(),
             'dataIncome' => $this->getFinancesData('i'),
             'dataCost' => $this->getFinancesData('c'),
+            'dataBalance' => $this->getAccBalance(),
             'sumIncome' => $this->getFinancesSum('i'),
             'sumCost' => $this->getFinancesSum('c'),
             'compareIncomeSum' => $compareIncomeSum ?? [],
@@ -53,6 +55,19 @@ class Sheet extends Component
         }
 
         return $dates;
+    }
+
+    public function getAccBalance()
+    {
+        $dates = $this->getMonths();
+        foreach ($dates as $date) {
+            $newData = Carbon::createFromFormat('m-Y', $date);
+            $month = $newData->month;
+            $year = $newData->year;
+            $return[$date] = $this->lastAccBalance($month, $year);
+        }
+
+        return $return;
     }
 
     public function getFinancesData($type, $month = null, $year = null): array
@@ -97,7 +112,12 @@ class Sheet extends Component
         foreach ($dates as $val) {
             $month = substr($val, 0, 2);
             $year = substr($val, -4);
-            $dbt[$val] = $this->getFinanceSum($month, $year, $type, 'type');
+            if ($type == 'i') {
+                $additional = $this->lastAccBalance($month);
+            } else {
+                $additional = 0;
+            }
+            $dbt[$val] = $this->getFinanceSum($month, $year, $type, 'type') + $additional;
         }
 
         return $dbt;
@@ -107,9 +127,11 @@ class Sheet extends Component
     {
         $monthNumber = (empty($month)) ? date('m') : $month;
         $month = str_pad($monthNumber, 2, '0', STR_PAD_LEFT);
-        $lastDay = date('t');
+
+        $lastDay = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+
         $firstDayThisMonth = date($year.'-'.$month.'-01');
-        $lastDayThisMonth = date($year.'-'.$month.'-t');
+        $lastDayThisMonth = date($year.'-'.$month.'-'.$lastDay);
         $actualDate = Carbon::now()->format('Y-m');
         $compareDate = $year.'-'.$month;
         $planned = 0;
@@ -122,7 +144,10 @@ class Sheet extends Component
         ->where(function ($qr) use ($firstDayThisMonth, $lastDayThisMonth, $lastDay) {
             $qr->where(function ($query) use ($firstDayThisMonth, $lastDayThisMonth) {
                 $query->where('group', 2)
-                ->whereBetween('created_at', [$firstDayThisMonth, $lastDayThisMonth]);
+                ->where(function ($query) use ($firstDayThisMonth, $lastDayThisMonth) {
+                    $query->where('created_at', '>=', $firstDayThisMonth)
+                    ->where('created_at', '<=', $lastDayThisMonth);
+                });
             });
             $qr->orWhere(function ($query) use ($lastDay, $lastDayThisMonth) {
                 $query->where(function ($query) {
@@ -138,5 +163,15 @@ class Sheet extends Component
         })->sum('value');
 
         return $period + $planned;
+    }
+
+    public function lastAccBalance($currentMonth = null, $currentYear = null)
+    {
+        $currentMonth = (is_null($currentMonth)) ? Carbon::now()->subMonth()->month : $currentMonth - 1;
+        $currentYear = (is_null($currentYear)) ? Carbon::now()->year : $currentYear;
+        $return = AccBalance::whereMonth('created_at', $currentMonth)->whereYear('created_at', $currentYear)->sum('value');
+        // dd($currentYear);
+
+        return $return;
     }
 }

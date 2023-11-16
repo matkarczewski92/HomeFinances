@@ -8,30 +8,7 @@
 
 
   <div class="row contentMainBox ">
-    <div class="row contentGroup ">
-      <div class="col content rounded-2 shadow me-3">
-        1tresc
-      </div>
-      <div class="col content rounded-2 shadow ms-3">
-        1tresc
-      </div>
-    </div>
-    <div class="row contentGroup  ">
-      <div class="col content rounded-2 shadow me-3">
-        1tresc
-      </div>
-      <div class="col content rounded-2 shadow">
-        1tresc
-      </div>
-      <div class="col content rounded-2 shadow ms-3">
-        1tresc
-      </div>
-    </div>
-    <div class="row contentGroup  ">
-      <div class="col content rounded-2 shadow">
-        1tresc
-      </div>
-    </div>
+    @livewire('home.planning-stats')
   </div>
 
 @endsection

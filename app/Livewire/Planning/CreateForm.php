@@ -14,6 +14,7 @@ class CreateForm extends Component
     public $formCategory;
     public $dateFrom;
     public $dateTo;
+    public $title;
     public $value;
     public $editId;
     public $edit;
@@ -36,6 +37,7 @@ class CreateForm extends Component
         $this->formCategory = $tr->category;
         $this->formType = $tr->type;
         $this->value = $tr->value;
+        $this->title = $tr->title;
         $expDate = Carbon::createFromFormat('Y-m-d', $tr->exp_date)->format('Y-m');
         $this->dateTo = $expDate;
         $this->editId = $this->edit;
@@ -62,8 +64,8 @@ class CreateForm extends Component
         if ($planCount != 0 and $planGetLast->exp_date != null) {
             $dateFrom = Carbon::createFromFormat('Y-m-d', $planGetLast->exp_date)->addDay()->format('Y-m');
             if ($this->editId) {
-                $this->dateFrom = $dateFrom;
-                $this->dateTo = $dateFrom;
+                // $this->dateFrom = $dateFrom;
+                // $this->dateTo = $dateFrom;
             }
         }
         $this->formShow = ($this->formCategory) ? 1 : '';

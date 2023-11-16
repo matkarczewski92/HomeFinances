@@ -34,8 +34,11 @@
     @if (!empty($formShow))
 
     <div class="row g-3 mb-3">
+        <div class="mb-1">
+            @include('livewire.components.input', ['title' => 'Tytuł transakcji', 'type' => 'text', 'name' => 'title', 'model' => 'title', 'required' => 'required'])
+        </div>
         <div class="col-md-6">
-            @include('livewire.components.input', ['title' => 'Kwota', 'type' => 'number', 'name' => 'value', 'model' => 'value', 'min' => '0.01', 'step' => '0.01', 'required' => 'required'])
+            @include('livewire.components.input', ['title' => 'Kwota', 'type' => 'number', 'name' => 'value', 'model' => 'value',  'step' => '0.01', 'required' => 'required'])
         </div>
         <div class="col-md-3">
             @include('livewire.components.input', ['title' => 'Obowiązuje od', 'type' => 'month', 'name' => 'created_at', 'model' => 'dateFrom','min' => $dateFrom])

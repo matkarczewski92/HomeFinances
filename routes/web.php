@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccBalanceController;
 use App\Http\Controllers\BudgetPlanningController;
 use App\Http\Controllers\TransactionsController;
 use Illuminate\Support\Facades\Auth;
@@ -42,4 +43,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('savings', App\Http\Controllers\SavingssController::class);
     Route::resource('transactions', TransactionsController::class);
     Route::resource('planning', BudgetPlanningController::class);
+    Route::resource('accbalance', AccBalanceController::class);
 });

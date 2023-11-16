@@ -8,6 +8,10 @@ nav {
     top: 0px;
     width:100%;
     z-index:100;
+    height: 100vh;
+  }
+  nav ul {
+    flex-direction: column;
   }
 
 a {
@@ -22,6 +26,12 @@ a {
 .nav-link.active{
     background-color:#858685c4 !important;
 
+}
+
+@media only screen and (max-width: 1050px) {
+    .toHide {
+        display: none !important;
+    }
 }
 
 

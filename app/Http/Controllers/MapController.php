@@ -19,8 +19,9 @@ class MapController extends Controller
 
     public function getdayArray(int $month = null, $year = null): array
     {
-        $year = (empty($year)) ? $year = date('Y') : $year;
-        $month = (empty($month)) ? $month = date('m') : $month;
+        $dateC = Carbon::now();
+        $year = (empty($year)) ? $year = $dateC->year : $year;
+        $month = (empty($month)) ? $month = $dateC->month : $month;
         $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
         for ($i = 1; $i <= $daysInMonth; ++$i) {

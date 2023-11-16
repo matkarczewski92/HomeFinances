@@ -10,13 +10,10 @@ return new class() extends Migration {
      */
     public function up(): void
     {
-        Schema::create('budget_plans', function (Blueprint $table) {
+        Schema::create('acc_balances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('type', 2)->comment('i->income, c->cost');
-            $table->string('title');
+            $table->foreignId('account_id')->constrained('account_lists')->cascadeOnDelete()->cascadeOnUpdate();
             $table->double('value', 8, 2);
-            $table->date('exp_date')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class() extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('budget_plans');
+        Schema::dropIfExists('acc_balances');
     }
 };
