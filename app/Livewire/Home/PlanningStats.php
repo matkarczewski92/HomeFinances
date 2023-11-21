@@ -24,12 +24,12 @@ class PlanningStats extends Component
 
         foreach ($plans as $p) {
             $details = BudgetPlan::find($p->id);
-            $plan = BudgetPlan::where('id', $p->id)->sum('value');
+            $plan = BudgetPlan::where('category', $p->category)->sum('value');
             $period = Finances::where('type', $p->type)->where('category', $p->category)
                 ->where('group', 2)
                 ->whereBetween('created_at', [$firstDayThisMonth, $lastDayThisMonth])
                 ->sum('value');
-
+            // dd($plans);
             $data[$p->category] = [$details, $plan, $period];
         }
 

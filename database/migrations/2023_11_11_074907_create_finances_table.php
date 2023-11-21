@@ -12,7 +12,7 @@ return new class() extends Migration {
     {
         Schema::create('finances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category')->constrained('categories')->nullable()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('category')->nullable()->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('group')->constrained('groups')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('saving')->nullable()->constrained('savings')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('type', 2)->comment('i->income, c->cost');

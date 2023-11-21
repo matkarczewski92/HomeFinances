@@ -60,7 +60,7 @@
       <hr class="">
           <div class="dropdown text-center ">
             <a href="#" class=" align-items-center text-decoration-none " id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="{{ Auth::user()?->avatar }}" alt="" width="136" height="136" class="rounded-circle me-2"> <br>
+              <img src="{{ Auth::user()?->avatar }}" alt="Avatar" width="136" height="136" class="rounded-circle me-2"> <br>
               <strong> {{ ucfirst(Auth::user()?->name) }} </strong><br/>
               @can('admin-level')<small>Administrator</small>@endcan
             </a>

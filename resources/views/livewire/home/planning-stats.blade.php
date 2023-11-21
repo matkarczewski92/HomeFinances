@@ -18,6 +18,7 @@
             <br/>
             Planowane: {{number_format($d[1],2, ',','.')}} zł<br/>
             Zrealizowane: {{number_format($d[2],2, ',','.')}} zł<br/>
+            <strong>Pozostało: {{number_format($d[1]-$d[2],2, ',','.')}} zł</strong><br/>
         </p>
 
     </div>

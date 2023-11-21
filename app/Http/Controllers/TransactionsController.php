@@ -106,7 +106,7 @@ class TransactionsController extends Controller
         } elseif ($request->group == 3) {
             $route = 'loans';
         } elseif ($request->group == 4) {
-            $route = 'savings';
+            $route = 'savings.index';
         } elseif ($request->group == 2) {
             $route = match ($request->type) {
                 'i' => 'income',
